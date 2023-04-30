@@ -1,0 +1,110 @@
+openapi: 3.0.1
+info:
+  title: ChatGPT Memory Plugin
+  description: A plugin that allows ChatGPT to have long-term memory by storing and retrieving conversation history. This plugin enables ChatGPT to recall specific exchanges and facts from previous interactions.
+  version: 'v2'
+servers:
+  - url: http://localhost:5004
+paths:
+  /memory/{username}:
+    get:
+      operationId: getMemory
+      summary: Get the conversation history for the specified user
+      parameters:
+      - in: path
+        name: username
+        schema:
+            type: string
+        required: true
+        description: The name of the user.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getMemoryResponse'
+    post:
+      operationId: addMemory
+      summary: Add a new interaction to the conversation history
+      parameters:
+      - in: path
+        name: username
+        schema:
+            type: string
+        required: true
+        description: The name of the user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/addMemoryRequest'
+      responses:
+        "200":
+          description: OK
+    delete:
+      operationId: deleteMemory
+      summary: Delete an interaction from the conversation history
+      parameters:
+      - in: path
+        name: username
+        schema:
+            type: string
+        required: true
+        description: The name of the user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/deleteMemoryRequest'
+      responses:
+        "200":
+          description: OK
+
+components:
+  schemas:
+    getMemoryResponse:
+      type: object
+      properties:
+        history:
+          type: array
+          items:
+            type: object
+            properties:
+              user_input:
+                type: string
+                description: The input provided by the user.
+              chatgpt_response:
+                type: string
+                description: The response provided by ChatGPT.
+              timestamp:
+                type: string
+                format: date-time
+                description: The timestamp of the interaction.
+          description: The conversation history.
+    addMemoryRequest:
+      type: object
+      required:
+      - user_input
+      - chatgpt_response
+      properties:
+        user_input:
+          type: string
+          description: The input provided by the user.
+          required: true
+          maxLength: 1000  # Limit the length of user_input to 1000 characters
+        chatgpt_response:
+          type: string
+          description: The response provided by ChatGPT.
+          required: true
+    deleteMemoryRequest:
+      type: object
+      required:
+      - interaction_idx
+      properties:
+        interaction_idx:
+          type: integer
+          description: The index of the interaction to delete.
+          required: true

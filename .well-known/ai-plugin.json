@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "ChatGPT Memory (no auth)",
+  "name_for_model": "chatgpt_memory",
+  "description_for_human": "Plugin giving ChatGPT long-term memory of conversation history. Used to build context and recall specifics.",
+  "description_for_model": "Plugin giving ChatGPT long-term memory of conversation history. Used to build context and recall specifics.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "http://localhost:5004/openapi.yaml",
+    "is_user_authenticated": false
+  },
+  "logo_url": "http://localhost:5004/logo.png",
+  "contact_email": "legal@example.com",
+  "legal_info_url": "http://example.com/legal"
+}
