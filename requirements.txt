@@ -1,2 +1,5 @@
 quart
 quart-cors
+tinydb
+openai
+numpy

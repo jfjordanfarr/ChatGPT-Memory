@@ -30,6 +30,3 @@ The plugin should now be installed and enabled! You can start by interacting wit
 ## Getting help
 
 If you run into issues or have questions building a plugin, please join our [Developer community forum](https://community.openai.com/c/chat-plugins/20).
-```
-
-This `readme.md` file provides instructions for setting up and running the ChatGPT Memory Plugin. It includes steps for installing the required packages, running the plugin, and installing the plugin in the ChatGPT UI. The plugin runs on the user's local machine from `localhost:5004`. The readme also provides a link to the Developer community forum for assistance and questions.
